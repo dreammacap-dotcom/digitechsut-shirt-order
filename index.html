@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>พรีออเดอร์เสื้อช็อป DIGITECH</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#021410;--ink:#e8fff4;--mut:#9bc7b3;--g1:#052e1f;--g2:#0b5d3b;--g3:#34d399;--g4:#6ee7b7;--gap:40px;--glass:rgba(11,93,59,.22);--line:rgba(52,211,153,.35);--bad:#ff8a8a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(min-width:900px){:root{--gap:64px}}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,var(--g2),var(--bg) 70%) fixed,var(--bg);color:var(--ink);font:400 16px/1.6 'Noto Sans Thai',system-ui,sans-serif}
+h1,h2,h3,.dg{font-family:Orbitron,'Noto Sans Thai',sans-serif}
+canvas#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:.5;pointer-events:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+section{margin-top:var(--gap)}
+.card{background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 0 24px rgba(52,211,153,.12)}
+h2{font-size:1.25rem;margin:0 0 14px;color:var(--g4);text-shadow:0 0 14px rgba(52,211,153,.5)}
+.btn{min-height:48px;padding:0 24px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--g3),var(--g4));color:#032016;font:700 1rem 'Noto Sans Thai',sans-serif;cursor:pointer;position:relative;overflow:hidden;transition:box-shadow .2s,transform .1s}
+.btn:hover{box-shadow:0 0 22px rgba(110,231,183,.7)}.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--g4);border:1px solid var(--line)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:rip .5s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(4);opacity:0}}
+:focus-visible{outline:3px solid var(--g4);outline-offset:2px}
+/* progress */
+#prog{position:sticky;top:0;z-index:20;background:rgba(2,20,16,.85);backdrop-filter:blur(8px);padding:calc(8px + env(safe-area-inset-top,0px)) 16px 8px;display:flex;gap:6px;justify-content:center}
+#prog i{flex:1;max-width:120px;height:6px;border-radius:3px;background:#12392b;transition:background .3s,box-shadow .3s}
+#prog i.on{background:var(--g3);box-shadow:0 0 10px var(--g3)}
+/* hero */
+#scene{height:170vh}
+#hero{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px;margin-top:0;padding:0}
+#content{opacity:0;transform:translateY(24px);transition:opacity .45s ease,transform .45s ease}#content.on{opacity:1;transform:none}
+#heroP small{display:block;margin-top:10px;font-size:.85rem}
+#hero h1{font-size:clamp(2.2rem,10vw,4.6rem);margin:0;letter-spacing:.06em;line-height:1.2;min-height:1.2em;white-space:nowrap;transform-origin:50% 50%}
+#hero h1.g0{filter:drop-shadow(0 0 14px rgba(52,211,153,.55))}
+#twt{position:relative;display:inline-block;background:linear-gradient(180deg,#f2fff9 0%,#6ee7b7 45%,#0f8a58 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+#twt:before,#twt:after{content:attr(data-text);position:absolute;left:0;top:0;opacity:0;white-space:nowrap}
+#twt:before{-webkit-text-fill-color:#34d399}#twt:after{-webkit-text-fill-color:#d1fae5}
+#tw.gl #twt{animation:gj .22s steps(2) 1}
+#tw.gl #twt:before{opacity:.9;transform:translate(-3px,0);clip-path:inset(15% 0 55% 0);animation:g1 .22s steps(1) 1}
+#tw.gl #twt:after{opacity:.9;transform:translate(3px,0);clip-path:inset(60% 0 10% 0);animation:g2 .22s steps(1) 1}
+@keyframes gj{50%{transform:skewX(-6deg)}}
+@keyframes g1{25%{clip-path:inset(5% 0 75% 0)}50%{clip-path:inset(40% 0 30% 0)}75%{clip-path:inset(70% 0 5% 0)}}
+@keyframes g2{25%{clip-path:inset(80% 0 2% 0)}50%{clip-path:inset(10% 0 70% 0)}75%{clip-path:inset(45% 0 35% 0)}}
+.cr{font-style:normal;-webkit-text-fill-color:#6ee7b7;animation:bl 1s steps(1) infinite}
+.rv ol.how li{opacity:0;transform:translateX(-8px)}
+.rv.in ol.how li{animation:stp .55s ease .8s forwards}
+.rv.in ol.how li:nth-child(2){animation-delay:1.15s}.rv.in ol.how li:nth-child(3){animation-delay:1.5s}.rv.in ol.how li:nth-child(4){animation-delay:1.85s}
+@keyframes stp{0%{opacity:0;transform:translateX(-8px)}50%{opacity:1;transform:none;color:var(--g4);text-shadow:0 0 12px var(--g3)}100%{opacity:1;transform:none}}
+.term{position:relative;overflow:hidden;min-height:96px;padding:16px;border-radius:14px;border:1px solid var(--line);background:rgba(2,20,16,.85);font:500 .95rem/1.9 'Noto Sans Thai',monospace;color:var(--g4);box-shadow:0 0 24px rgba(52,211,153,.12) inset}
+.term:before{content:'';position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--g4),transparent);opacity:.6;animation:scan 3.2s linear infinite}
+@keyframes scan{to{top:100%}}
+#t2:after{content:'\25AE';margin-left:4px;animation:bl 1s steps(1) infinite}
+@media(prefers-reduced-motion:reduce){.rv ol.how li{opacity:1;transform:none}#scene{height:auto}#hero{position:static;height:70vh}#content{opacity:1;transform:none}}
+#v0{padding-bottom:84px}@media(min-width:900px){#v0{padding-bottom:0}}
+
+@keyframes bl{50%{opacity:0}}
+#hero p{margin:0;color:var(--mut);max-width:36ch}
+/* shirt */
+#shirt{display:grid;gap:12px;justify-items:center}
+.mock{width:min(100%,300px);height:min(40vh,300px);aspect-ratio:1;border:1px dashed var(--line);border-radius:16px;display:grid;place-items:center;text-align:center;color:var(--mut);transition:transform .15s,opacity .3s;position:relative}
+.mock img{max-width:100%;max-height:100%;border-radius:12px}
+.mock.sw{animation:sw .35s ease}
+@keyframes sw{from{opacity:0;transform:scale(.96)}}
+.seg{display:flex;gap:8px}.seg button{min-height:44px}
+.seg .on{background:linear-gradient(135deg,var(--g3),var(--g4));color:#032016}
+/* schedule */
+#sch{display:grid;gap:12px}
+@media(min-width:900px){#sch{grid-template-columns:1.6fr 1fr 1fr}}
+.st h3{margin:0;font-size:.95rem;color:var(--mut)}
+.st .d{font:800 1.6rem Orbitron,sans-serif;color:var(--g4)}
+.st.m .d{font-size:1.2rem}.st.s{opacity:.8;padding:10px 18px}.st.s .d{font-size:.95rem;color:var(--mut);font-weight:600}
+.st.b .d{font-size:clamp(1.5rem,6vw,2.2rem)}
+.badge{display:inline-block;padding:2px 12px;border-radius:99px;background:rgba(52,211,153,.2);border:1px solid var(--g3);font-size:.85rem;margin-left:6px}
+.badge.cl{background:rgba(255,138,138,.15);border-color:var(--bad);color:var(--bad)}
+.glow{animation:gl 1s ease-out 1}
+@keyframes gl{40%{text-shadow:0 0 24px var(--g3),0 0 8px var(--g4)}}
+.cd{font:700 1.1rem Orbitron,sans-serif;margin-top:6px}
+.note{font-size:.9rem;color:var(--mut)}
+.price{font:800 clamp(1.6rem,7vw,2.4rem) Orbitron,sans-serif;color:var(--g4)}
+ol.how{margin:0;padding-left:1.3em;color:var(--mut)}
+/* reveal */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .35s ease,transform .35s ease}.rv.in{opacity:1;transform:none}
+/* form */
+.fld{margin-bottom:14px}
+label,.lb{display:block;font-weight:500;margin-bottom:4px}
+.lb{display:flex;justify-content:space-between;align-items:center;gap:8px}
+input[type=text],input[type=tel],input[type=number],select{width:100%;min-height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:rgba(2,20,16,.7);color:var(--ink);font:inherit}
+input:disabled{background:#0c1f19;color:#587a6b}
+.fld.bad input,.fld.bad select{border-color:var(--bad)}
+.err{color:var(--bad);font-size:.88rem;margin:4px 0 0;min-height:0;display:none}.fld.bad .err{display:block}
+.pre{display:flex}.pre b{display:grid;place-items:center;padding:0 14px;border:1px solid var(--line);border-right:0;border-radius:12px 0 0 12px;background:#0c2a1f;color:var(--g4)}
+.pre input{border-radius:0 12px 12px 0}
+.qty{display:flex;gap:8px}.qty input{text-align:center}.qty button{width:52px;padding:0}
+.sum{display:grid;gap:4px}.sum div{display:flex;justify-content:space-between}
+.tot{font:800 1.5rem Orbitron,sans-serif;color:var(--g4);border-top:1px solid var(--line);padding-top:8px;margin-top:6px}
+#rv>div:not(.tot),#rc>div:not(.tot){gap:16px;padding:9px 0;border-bottom:1px solid rgba(52,211,153,.15)}
+#rv>div:not(.tot)>span:first-child,#rc>div:not(.tot)>span:first-child{color:var(--mut);font-weight:400;font-size:.92rem}
+#rv>div:not(.tot)>span:last-child,#rc>div:not(.tot)>span:last-child{color:var(--ink);font-weight:700;text-align:right}
+#rc>div:not(.tot):nth-last-child(2){border-bottom:0}
+#rc .tot{gap:16px}#rc .tot span:first-child{font:500 .95rem 'Noto Sans Thai',sans-serif;color:var(--mut);align-self:center}
+.row2{display:flex;gap:10px;flex-wrap:wrap}.row2 .btn{flex:1;min-width:140px}
+/* sticky cta */
+#cta{position:fixed;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));z-index:15;background:linear-gradient(transparent,rgba(2,20,16,.9));transition:opacity .25s,transform .25s}
+#cta .btn{width:100%}
+#cta.h{opacity:0;transform:translateY(20px);pointer-events:none}
+@media(min-width:900px){#cta{left:auto;right:20px;top:calc(48px + env(safe-area-inset-top,0px));bottom:auto;width:auto;background:none;padding:0}#cta .btn{width:auto}}
+/* pay */
+.qrbox{display:grid;justify-items:center;gap:8px;text-align:center}
+#qr{background:#fff;padding:10px;border-radius:12px;width:230px;height:230px}
+#qr canvas,#qr img{width:100%;height:100%}
+.amt{font:800 2rem Orbitron,sans-serif;color:var(--g4)}
+.warn{color:#ffe08a;font-weight:700}
+#drop{border:2px dashed var(--line);border-radius:14px;padding:22px;text-align:center;cursor:pointer;min-height:100px;color:var(--mut)}
+#drop.dg{border-color:var(--g4);background:rgba(52,211,153,.08)}
+#prev{max-width:100%;max-height:260px;border-radius:10px;display:block;margin:10px auto}
+.spin{width:18px;height:18px;border:3px solid #032016;border-top-color:transparent;border-radius:50%;display:inline-block;vertical-align:middle;margin-right:8px;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.res{padding:12px;border-radius:12px;margin-top:12px;border:1px solid var(--bad);background:rgba(255,138,138,.1)}
+/* thanks */
+#shot{aspect-ratio:9/16;max-width:360px;margin:0 auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:10px;padding:22px;background:linear-gradient(160deg,var(--g1),#021410 70%);border:1px solid var(--line);border-radius:20px;box-shadow:0 0 40px rgba(52,211,153,.25)}
+.tee{width:200px;height:200px;border:2px dashed var(--g3);border-radius:18px;display:grid;place-items:center;font:700 1.1rem Orbitron,sans-serif;word-break:break-word;padding:8px} /* TODO: วางรูป mockup เสื้อพร้อมชื่อผู้สั่งที่นี่ (.tee) 600x600px */
+canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:50;width:100%;height:100%}
+/* toast */
+#toasts{position:fixed;top:calc(60px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:60;display:grid;gap:8px;width:min(92vw,420px)}
+.toast{padding:12px 16px;border-radius:12px;background:#0b2a1f;border:1px solid var(--g3);box-shadow:0 0 18px rgba(52,211,153,.3);animation:ti .3s ease}
+.toast.e{border-color:var(--bad)}
+@keyframes ti{from{opacity:0;transform:translateY(-8px)}}
+.view{animation:vi .35s ease}@keyframes vi{from{opacity:0;transform:translateX(16px)}}
+[hidden]{display:none!important}
+.mono{font-family:Orbitron,sans-serif}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+/* การ์ดเสื้อหน้าขอบคุณ (เอฟเฟกต์ลอย + เรืองแสง + แสงพาดผ่าน) */
+.tee {
+  width: 210px;
+  height: 210px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: rgba(11, 93, 59, 0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(52, 211, 153, 0.25), inset 0 0 15px rgba(52, 211, 153, 0.15);
+  position: relative;
+  overflow: hidden;
+  animation: floatTee 3.5s ease-in-out infinite;
+}
+.tee img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+  transition: transform 0.3s ease;
+}
+.tee:hover img {
+  transform: scale(1.08) rotate(2deg);
+}
+/* แสงวิ่งพาดผ่านตัวเสื้อ (Shine Effect) */
+.tee::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(60deg, transparent 40%, rgba(110, 231, 183, 0.25) 50%, transparent 60%);
+  transform: rotate(25deg);
+  animation: shineTee 4s infinite;
+  pointer-events: none;
+}
+@keyframes floatTee {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes shineTee {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  25%, 100% { transform: translateX(100%) rotate(25deg); }
+}
+
+/* เลขเวอร์ชันใต้เว็บ */
+.app-ver {
+  text-align: center;
+  padding: 24px 0 16px;
+  font-size: 0.8rem;
+  color: var(--mut);
+  opacity: 0.6;
+  letter-spacing: 0.08em;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="prog" aria-label="ขั้นตอน"><i></i><i></i><i></i><i></i></div>
+<div id="toasts" role="status" aria-live="polite"></div>
+<main class="wrap">
+
+<!-- ===== ขั้นที่ 1: Landing + ฟอร์ม ===== -->
+<div id="v0" class="view">
+ <div id="scene"><section id="hero"><h1 id="tw" class="g0" aria-label="DIGITECH"><span id="twt" data-text="" aria-hidden="true"></span><i class="cr" aria-hidden="true">|</i></h1><p id="heroP">พรีออเดอร์เสื้อช็อป DIGITECH#7<small>เลื่อนลงเพื่อดูรายละเอียด</small></p></section></div>
+<div id="content">
+
+ <section id="shirt" class="rv">
+  <!-- วางรูป mockup ที่นี่: ขนาดแนะนำ 800x800px (PNG โปร่งใส) — ด้านหน้า = #mockFront, ด้านหลัง = #mockBack -->
+  <div class="mock" id="mock">
+  <div id="mockFront">
+    <img src="Front2.png" alt="เสื้อช็อปด้านหน้า" style="width:100%;height:100%;object-fit:contain;">
+  </div>
+  <div id="mockBack" hidden>
+    <img src="Back2.png" alt="เสื้อช็อปด้านหลัง" style="width:100%;height:100%;object-fit:contain;">
+  </div>
+</div>
+  <div class="seg" role="group" aria-label="สลับด้านเสื้อ"><button class="btn on" data-side="front">ด้านหน้า</button><button class="btn ghost" data-side="back">ด้านหลัง</button></div>
+ </section>
+
+ <section class="rv"><h2>กำหนดการ</h2>
+  <div id="sch">
+   <div class="card st b"><h3>เปิดพรีออเดอร์ <span id="badge" class="badge">กำลังเปิดรับ</span></h3><div class="d" id="d1"></div><div class="cd" id="cd"></div></div>
+   <div class="card st m"><h3>ไปวัดไซซ์เสื้อด้วยตนเอง</h3><div class="d" id="d2"></div><p class="note">ไม่ต้องเลือกไซซ์ในฟอร์ม ให้ไปลองวัดที่หน้าร้านเอง</p><a class="btn ghost" id="map" target="_blank" rel="noopener" style="display:inline-grid;place-items:center;text-decoration:none">เปิดใน Google Maps</a></div>
+   <div class="card st s"><h3>รับเสื้อ</h3><div class="d" id="d3"></div></div>
+  </div>
+ </section>
+
+ <section class="rv card"><h2>ราคา</h2><div class="price" id="priceTxt"></div><p class="note">ปักชื่อ DIGITECH ด้านหลังเสื้อ +50 บาท · ใส่ AKA ไม่เพิ่มราคา</p>
+  <h2 style="margin-top:14px">ขั้นตอนการสั่ง</h2><ol class="how"><li>กรอกข้อมูล</li><li>ตรวจทานรายการ</li><li>โอนเงินผ่าน QR แล้วแนบสลิป</li><li>รับรหัสออเดอร์</li></ol></section>
+
+ <section class="rv"><div class="term" id="term"><div id="t1"></div><div id="t2"></div></div></section>
+ </div>
+
+</div>
+<div id="v1" class="view" hidden>
+ <section id="formSec" class="card"><h2>กรอกข้อมูลสั่งจอง</h2>
+ <form id="f" novalidate>
+  <div class="fld" data-k="prefix"><label for="prefix">คำนำหน้า (ไทย)</label><select id="prefix"><option value="">เลือกคำนำหน้า</option><option>นาย</option><option>นางสาว</option></select><p class="err"></p></div>
+  <div class="fld" data-k="th"><label for="th">ชื่อ-นามสกุล (ไทย)</label><input id="th" type="text" placeholder="เช่น สมชาย ใจดี" autocomplete="off"><p class="err"></p></div>
+  <div class="fld" data-k="en"><label for="en">ชื่อ-นามสกุล (อังกฤษ)</label><input id="en" type="text" placeholder="SOMCHAI JAIDEE" autocomplete="off"><p class="err"></p></div>
+  <div class="fld" data-k="sid"><label for="sid">รหัสนักศึกษา</label><div class="pre"><b>B</b><input id="sid" type="text" inputmode="numeric" maxlength="7" placeholder="เลข 7 หลัก"></div><p class="err"></p></div>
+  <div class="fld" data-k="major"><label for="major">สาขาวิชา</label><select id="major"><option value="">เลือกสาขา</option><option>Digital Communication</option><option>Digital Technology</option></select><p class="err"></p></div>
+  <div class="fld" data-k="aka"><div class="lb"><label for="aka" style="margin:0">AKA (ไม่เพิ่มราคา)</label><label style="margin:0;display:flex;gap:6px;align-items:center"><input type="checkbox" id="akaOn"> ต้องการใส่ AKA (ฉายา)</label></div><input id="aka" type="text" placeholder="ภาษาอังกฤษเท่านั้น" disabled><p class="err"></p></div>
+  <div class="fld" data-k="emb"><label for="emb">ปักชื่อ DIGITECH ด้านหลังเสื้อ</label><select id="emb"><option value="">เลือก</option><option value="0">ไม่ปัก (+0 บาท)</option><option value="1">ปัก (+50 บาท)</option></select><p class="err"></p></div>
+  <div class="fld" data-k="qty"><label for="qty">จำนวนเสื้อช็อป</label><div class="qty"><button type="button" class="btn ghost" id="qm" aria-label="ลด">−</button><input id="qty" type="text" inputmode="numeric" value="1"><button type="button" class="btn ghost" id="qp" aria-label="เพิ่ม">+</button></div><p class="err"></p></div>
+  <div class="fld" data-k="ig"><label for="ig">Instagram</label><input id="ig" type="text" placeholder="@username" autocapitalize="off" autocomplete="off"><p class="err"></p></div>
+  <div class="fld" data-k="phone"><label for="phone">เบอร์โทรศัพท์</label><input id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="0812345678"><p class="err"></p></div>
+  <div class="card sum" aria-live="polite"><div><span>ราคาเสื้อ</span><span id="s1"></span></div><div><span>ค่าปักหลัง</span><span id="s2"></span></div><div><span>จำนวน</span><span id="s3"></span></div><div class="tot"><span>รวมโดยประมาณ</span><span id="s4"></span></div></div>
+  <div class="row2" style="margin-top:14px"><button type="button" class="btn ghost" id="back">กลับ</button><button type="submit" class="btn">ต่อไป</button></div>
+ </form></section>
+</div>
+
+<!-- ===== ขั้นที่ 2: ตรวจทาน ===== -->
+<div id="v2" class="view" hidden><section class="card"><h2>ตรวจทานรายการ</h2><div class="sum" id="rv"></div></section>
+ <section class="card"><div class="sum" id="rc"></div><div class="row2" style="margin-top:14px"><button class="btn ghost" id="edit">แก้ไขข้อมูล</button><button class="btn" id="pay">ชำระเงิน</button></div></section></div>
+
+<!-- ===== ขั้นที่ 3: ชำระเงิน ===== -->
+<div id="v3" class="view" hidden><section class="card qrbox"><h2>ชำระเงินด้วย QR PromptPay</h2>
+ <div id="qr"></div><div class="amt" id="pAmt"></div><div id="pName"></div><div class="note">รหัสออเดอร์ <b id="pId" class="mono"></b></div>
+ <div class="warn">กรุณาโอนตามยอดที่แสดงให้ตรงทุกสตางค์</div><div class="cd" id="pTimer"></div>
+ <button class="btn ghost" id="saveQr">บันทึกภาพ QR</button></section>
+ <section class="card"><h2>แนบสลิป</h2>
+  <div id="drop" tabindex="0" role="button" aria-label="เลือกไฟล์สลิป">ลากไฟล์มาวาง หรือกดเลือกไฟล์ (JPG/PNG/HEIC)</div><input type="file" id="file" accept="image/jpeg,image/png,image/heic,image/heif,.heic" hidden>
+  <img id="prev" alt="ตัวอย่างสลิป" hidden><div class="row2" id="slipBtns" hidden style="margin-top:8px"><button class="btn ghost" id="chg">เปลี่ยนรูป</button><button class="btn ghost" id="del">ลบ</button></div>
+  <label id="mockBox" style="margin-top:12px" hidden>ผลลัพธ์จำลอง (เฉพาะโหมดทดสอบ)<select id="mockRes"><option>PAID</option><option>AMOUNT_MISMATCH</option><option>DUPLICATE_SLIP</option><option>VERIFY_FAILED</option></select></label>
+  <button class="btn" id="verify" style="width:100%;margin-top:12px">ยืนยันการชำระเงิน</button><div id="res"></div></section></div>
+
+<!-- ===== ขั้นที่ 4: ขอบคุณ ===== -->
+<div id="v4" class="view" hidden><div id="shot"><h2 style="margin:0">ขอบคุณที่สั่งจอง!</h2><div class="tee" id="tee"><img src="THANKS.png" alt="เสื้อช็อป" style="max-width:140px;height:auto;"></div><div class="mono" id="tId"></div><div id="tSum" class="note"></div><div class="amt" style="font-size:1.4rem" id="tAmt"></div><div class="note" id="tDt"></div></div>
+ <p class="note" style="text-align:center">โปรดเข้าลองวัดไซซ์เสื้อด้วยตนเองที่หน้าร้าน เพื่อไซซ์ที่สวมใส่ได้อย่างสบายและพอดี</p><p class="note" style="text-align:center;margin-top:0">
+  <a id="sheetLink" target="_blank" rel="noopener" style="color:var(--g4);text-decoration:underline;font-weight:500;font-size:0.95rem;display:inline-flex;align-items:center;gap:4px">ตรวจสอบรายการออเดอร์ทั้งหมด</a>
+</p><div class="row2"><button class="btn" id="home">กลับหน้าแรก</button></div></div>
+ <div class="app-ver mono">© 2026 DGT Working Committee. All rights reserved. v1.0.5</div>
+</main>
+<div id="cta" class="h"><button class="btn" id="ctaBtn" data-go>สั่งจองเลย</button></div>
+<canvas id="cf" hidden></canvas>
+
+<script>
+/* ===== config: แก้ค่าที่นี่ที่เดียว ===== */
+const CFG={
+ API_URL:'https://script.google.com/macros/s/AKfycbysspOqnpNDREjJnGZgNGWKX92ExKQNck1HDi3k1hjyu9AROsQl1FXMMH0ryLHxAPEctA/exec',            // URL ของ Google Apps Script Web App
+ SHEET_URL:'https://docs.google.com/spreadsheets/d/1l9-79Z_KrXbU0QIBIKs22SNxOA5ChMEFpx5wnznqt5Q/edit', // 👈 วางลิงก์ Google Sheets ของคุณตรงนี้
+ USE_MOCK:false,         // true = ใช้ Mock API ทดสอบ UI
+ SHIRT_PRICE:459,         // 0 = "ราคาจะประกาศเร็ว ๆ นี้"
+ EMB_PRICE:50, MAX_QTY:10, AKA_MAX:20, QR_MINUTES:15, SLIP_MAX_MB:5, TIMEOUT_MS:15000,
+ PREORDER_START:'21/10/26', PREORDER_END:'31/10/26', PREORDER_END_ISO:'2026-10-31T23:59:00+07:00', // ISO เช่น '2026-12-31T23:59:00+07:00' เพื่อเปิดตัวนับถอยหลัง/สถานะปิดรับ
+ SIZE_START:'01/11/26', SIZE_END:'07/11/26', MAP_URL:'https://maps.app.goo.gl/Jdky3j7RymwVwQtr7', DELIVERY_MONTH:'มกราคม 2027'
+};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const baht=n=>Number(n).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2})+' บาท';
+const S={order:null,slip:null,timer:null,busy:false,step:0,seen:false};
+
+/* ===== toast ===== */
+function toast(m,err){const t=document.createElement('div');t.className='toast'+(err?' e':'');t.textContent=m;$('#toasts').append(t);setTimeout(()=>t.remove(),4500)}
+
+/* ===== ปุ่ม ripple ===== */
+document.addEventListener('pointerdown',e=>{const b=e.target.closest('.btn');if(!b||RM)return;const r=b.getBoundingClientRect(),d=Math.max(r.width,r.height)/4,s=document.createElement('span');s.className='rip';s.style.cssText=`width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;b.append(s);setTimeout(()=>s.remove(),500)});
+
+/* ===== พื้นหลังกริด + ไบนารีลอย ===== */
+(function(){const c=$('#bg'),x=c.getContext('2d');let W,H,p=[],off=0;function rs(){W=c.width=innerWidth;H=c.height=innerHeight;p=Array.from({length:Math.min(24,W/40|0)},()=>({x:Math.random()*W,y:Math.random()*H,v:.15+Math.random()*.25,t:Math.random()<.5?'0':'1'}))}
+function dr(){x.clearRect(0,0,W,H);if(!RM)off=(off+.12)%48;x.strokeStyle='rgba(52,211,153,.07)';x.beginPath();for(let i=off-48;i<W;i+=48){x.moveTo(i,0);x.lineTo(i,H)}for(let j=off-48;j<H;j+=48){x.moveTo(0,j);x.lineTo(W,j)}x.stroke();x.fillStyle='rgba(110,231,183,.35)';x.font='14px Orbitron,monospace';p.forEach(a=>{x.fillText(a.t,a.x,a.y);if(!RM){a.y+=a.v;if(a.y>H+14){a.y=-14;a.x=Math.random()*W}}});if(!RM)requestAnimationFrame(dr)}
+rs();addEventListener('resize',rs);dr()})();
+
+/* ===== Hero พิมพ์-ลบวนซ้ำ ===== */
+(function(){const el=$('#twt'),w='DIGITECH',sv=s=>{el.textContent=s;el.dataset.text=s};if(RM){sv(w);return}let i=0,d=1;(function t(){sv(w.slice(0,i));i+=d;if(i>w.length){d=-1;i=w.length;return setTimeout(t,1600)}if(i<0){d=1;i=0;return setTimeout(t,500)}setTimeout(t,d>0?140:70)})()})();
+
+/* ===== Hero: ขยาย DIGITECH ตามการเลื่อน แล้วค่อยเฟดเนื้อหาอื่นขึ้น ===== */
+const scene=$('#scene'),h1=$('#tw'),hp=$('#heroP'),ct=$('#content');let tk=false;
+function onScroll(){tk=false;if(S.step!==0)return;if(!S.seen&&scrollY+innerHeight>=document.documentElement.scrollHeight-8){S.seen=true;$('#cta').classList.remove('h')}if(RM){ct.classList.add('on');return}
+ const span=Math.max(1,scene.offsetHeight-innerHeight),p=Math.min(1,Math.max(0,scrollY)/span);
+ h1.style.transform=p?`translateY(${-p*30}vh) scale(${1+p*8})`:'';
+ h1.style.opacity=p<.7?1:Math.max(0,1-(p-.7)/.3);
+ h1.classList.toggle('g0',p<.03);hp.style.opacity=Math.max(0,1-p*4);
+ ct.classList.toggle('on',p>=.98)}
+addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(onScroll)}},{passive:true});addEventListener('resize',onScroll);onScroll();
+/* glitch เบา ๆ ทุก ~3.8 วินาที (เฉพาะตอนยังเห็นชื่ออยู่) */
+setInterval(()=>{if(!RM&&S.step===0&&scrollY<innerHeight*.2){h1.classList.add('gl');setTimeout(()=>h1.classList.remove('gl'),240)}},1700);
+/* พิมพ์ข้อความในกล่องทอร์มินัลด้านล่าง เล่นครั้งเดียวเมื่อเลื่อนถึง */
+(function(){const tm=$('#term');const ty=(el,s,cb)=>{if(RM){el.textContent=s;cb&&cb();return}let i=0;(function f(){el.textContent=s.slice(0,++i);if(i<s.length)setTimeout(f,35);else cb&&cb()})()};
+ new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();ty($('#t1'),'> สถานะพรีออเดอร์: '+(isClosed()?'ปิดรับแล้ว':'กำลังเปิดรับ'),()=>setTimeout(()=>ty($('#t2'),'> ถึงปลายทางแล้ว กดปุ่ม “สั่งจองเลย” ได้เลย'),250))}},{threshold:.8}).observe(tm)})();
+/* ===== Landing: ข้อมูล config ===== */
+$('#d1').textContent=CFG.PREORDER_START+' - '+CFG.PREORDER_END;$('#d2').textContent=CFG.SIZE_START+' - '+CFG.SIZE_END;
+$('#d3').textContent='ประมาณ '+CFG.DELIVERY_MONTH+' (โดยประมาณ)';$('#map').href=CFG.MAP_URL;
+if($('#sheetLink')) $('#sheetLink').href = CFG.SHEET_URL || '#';
+$('#priceTxt').textContent=CFG.SHIRT_PRICE?CFG.SHIRT_PRICE+' บาท':'ราคาจะประกาศเร็ว ๆ นี้';
+const endMs=CFG.PREORDER_END_ISO?Date.parse(CFG.PREORDER_END_ISO):NaN;
+const isClosed=()=>!isNaN(endMs)&&Date.now()>endMs;
+function tickCd(){if(isNaN(endMs)){$('#cd').textContent='';return}const l=endMs-Date.now(),b=$('#badge');if(l<=0){b.textContent='ปิดรับแล้ว';b.classList.add('cl');$('#cd').textContent='';return}const s=l/1000|0;$('#cd').textContent=`ปิดรับใน ${s/86400|0} วัน ${String(s%86400/3600|0).padStart(2,'0')}:${String(s%3600/60|0).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
+tickCd();setInterval(tickCd,1000);
+/* สลับด้านเสื้อ */
+$$('[data-side]').forEach(b=>b.onclick=()=>{$$('[data-side]').forEach(x=>{x.classList.toggle('on',x===b);x.classList.toggle('ghost',x!==b)});const f=b.dataset.side==='front';$('#mockFront').hidden=!f;$('#mockBack').hidden=f;$('#mock').classList.remove('sw');void $('#mock').offsetWidth;$('#mock').classList.add('sw')});
+/* tilt เบา ๆ บนเดสก์ท็อป */
+if(!RM&&matchMedia('(hover:hover)').matches){const m=$('#mock');m.onmousemove=e=>{const r=m.getBoundingClientRect();m.style.transform=`perspective(600px) rotateY(${((e.clientX-r.left)/r.width-.5)*10}deg) rotateX(${-((e.clientY-r.top)/r.height-.5)*10}deg)`};m.onmouseleave=()=>m.style.transform=''}
+/* fade-up เริ่มก่อนเข้าจอ */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('.d').forEach(d=>d.classList.add('glow'));io.unobserve(e.target)}}),{rootMargin:'0px 0px 160px 0px'});
+$$('.rv').forEach(e=>io.observe(e));
+/* ปุ่มลอย */
+$$('[data-go]').forEach(b=>b.onclick=()=>go(1));
+
+/* ===== ฟอร์ม: ตรวจสอบ real-time ===== */
+const F={};['prefix','th','en','sid','major','aka','emb','qty','ig','phone'].forEach(k=>F[k]=$('#'+k));
+const touched={};
+const V={
+ prefix:v=>v?'':'กรุณาเลือกคำนำหน้า',
+ th:v=>/^[\u0E00-\u0E7F]+( [\u0E00-\u0E7F]+)+$/.test(v.trim())?'':'กรอกชื่อและนามสกุลเป็นอักษรไทย เว้นวรรคระหว่างชื่อกับนามสกุล',
+ en:v=>/^[A-Z]+( [A-Z]+)+$/.test(v.trim())?'':'กรอกชื่อและนามสกุลเป็นอักษรอังกฤษ A-Z เว้นวรรคระหว่างกัน',
+ sid:v=>/^\d{7}$/.test(v)?'':'กรอกตัวเลข 7 หลักให้ครบ',
+ major:v=>v?'':'กรุณาเลือกสาขาวิชา',
+ aka:v=>!$('#akaOn').checked?'':(/^[A-Za-z]+$/.test(v)&&v.length<=CFG.AKA_MAX?'':`กรอกอักษรอังกฤษ A-Z ไม่เกิน ${CFG.AKA_MAX} ตัว (ไม่มีช่องว่าง)`),
+ emb:v=>v?'':'กรุณาเลือกว่าจะปักชื่อหรือไม่',
+ qty:v=>/^\d+$/.test(v)&&+v>=1&&+v<=CFG.MAX_QTY?'':`กรอกจำนวน 1-${CFG.MAX_QTY} ตัว`,
+ ig:v=>/^@[a-z0-9._]{1,30}$/.test(v)?'':'กรอก username ใช้ a-z, 0-9, จุด, ขีดล่าง ไม่เกิน 30 ตัว',
+ phone:v=>/^0\d{9}$/.test(v)?'':'กรอกเบอร์ 10 หลัก ขึ้นต้นด้วย 0'
+};
+const clean={
+ th:v=>v.replace(/[^\u0E00-\u0E7F ]/g,'').replace(/ {2,}/g,' '),
+ en:v=>v.toUpperCase().replace(/[^A-Z ]/g,'').replace(/ {2,}/g,' '),
+ sid:v=>v.replace(/\D/g,'').slice(0,7),
+ aka:v=>v.replace(/[^A-Za-z]/g,'').slice(0,CFG.AKA_MAX),
+ qty:v=>v.replace(/\D/g,'').slice(0,2),
+ ig:v=>{v=v.replace(/@/g,'').toLowerCase().replace(/[^a-z0-9._]/g,'').slice(0,30);return v?'@'+v:''},
+ phone:v=>v.replace(/\D/g,'').slice(0,10)
+};
+function chk(k,show){const m=V[k](F[k].value),w=F[k].closest('.fld');if(show||touched[k]){w.classList.toggle('bad',!!m);w.querySelector('.err').textContent=m}return !m}
+Object.keys(F).forEach(k=>{F[k].addEventListener('input',()=>{if(clean[k])F[k].value=clean[k](F[k].value);touched[k]=true;chk(k);calc()});F[k].addEventListener('blur',()=>{touched[k]=true;chk(k)})});
+$('#akaOn').onchange=e=>{F.aka.disabled=!e.target.checked;if(!e.target.checked){F.aka.value='';touched.aka=false;F.aka.closest('.fld').classList.remove('bad')}};
+const setQ=n=>{F.qty.value=Math.min(CFG.MAX_QTY,Math.max(1,n));touched.qty=true;chk('qty');calc()};
+$('#qm').onclick=()=>setQ((+F.qty.value||1)-1);$('#qp').onclick=()=>setQ((+F.qty.value||0)+1);
+/* ส่วนสรุปราคา (ประมาณการเท่านั้น Backend เป็นผู้ยืนยันยอดจริง) */
+const cu=new WeakMap();function count(el,to,fmt){const from=cu.get(el)||0;cu.set(el,to);if(RM){el.textContent=fmt(to);return}const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/400);el.textContent=fmt(from+(to-from)*p);if(p<1)requestAnimationFrame(f)})(t0)}
+function calc(){const q=Math.max(0,Math.min(CFG.MAX_QTY,+F.qty.value||0)),e=F.emb.value==='1'?CFG.EMB_PRICE:0;
+ $('#s1').textContent=CFG.SHIRT_PRICE?CFG.SHIRT_PRICE+' บาท':'รอประกาศ';$('#s2').textContent=e+' บาท';$('#s3').textContent=q+' ตัว';
+ const tot=(CFG.SHIRT_PRICE+e)*q;count($('#s4'),tot,v=>Math.round(v).toLocaleString('th-TH')+' บาท');return{q,e,tot}}
+calc();
+
+/* ===== นำทางระหว่างขั้น ===== */
+function go(n){S.step=n;[0,1,2,3,4].forEach(i=>{$('#v'+i).hidden=i!==n;const v=$('#v'+i);v.classList.remove('view');void v.offsetWidth;v.classList.add('view')});$$('#prog i').forEach((e,i)=>e.classList.toggle('on',i<n));$('#cta').classList.toggle('h',!(S.seen&&n===0));scrollTo({top:0,behavior:'auto'});if(n===0)requestAnimationFrame(onScroll)}
+const data=()=>({prefix:F.prefix.value,nameTh:F.th.value.trim(),nameEn:F.en.value.trim(),studentId:'B'+F.sid.value,major:F.major.value,aka:$('#akaOn').checked?F.aka.value:'',embroidery:F.emb.value==='1',qty:+F.qty.value,instagram:F.ig.value,phone:F.phone.value});
+$('#f').onsubmit=e=>{e.preventDefault();if(isClosed()){toast('ปิดรับพรีออเดอร์แล้ว',1);return}
+ const bad=Object.keys(F).filter(k=>!chk(k,true));if(bad.length){F[bad[0]].scrollIntoView({block:'center',behavior:RM?'auto':'smooth'});F[bad[0]].focus({preventScroll:true});toast('กรุณากรอกข้อมูลให้ถูกต้องครบถ้วน',1);return}
+ renderReview();go(2)};
+function renderReview(){const d=data(),c=calc(),r=(a,b)=>`<div><span>${a}</span><span>${b}</span></div>`;
+ $('#rv').innerHTML=r('ชื่อ-นามสกุล (อังกฤษ)',esc(d.nameEn))+r('สาขาวิชา',esc(d.major))+r('AKA',d.aka?esc(d.aka):'<span style="color:#587a6b">—</span>')+r('ปักชื่อ DIGITECH ด้านหลัง',d.embroidery?'ปัก':'ไม่ปัก')+r('จำนวน',d.qty+' ตัว');
+ $('#rc').innerHTML=r('ค่าเสื้อ × '+d.qty,CFG.SHIRT_PRICE?CFG.SHIRT_PRICE*d.qty+' บาท':'รอประกาศ')+r('ค่าปักหลัง × '+(d.embroidery?d.qty:0),(c.e*d.qty)+' บาท')+`<div class="tot"><span>ยอดรวมทั้งหมด</span><span>${c.tot.toLocaleString('th-TH')} บาท</span></div>`}
+$('#edit').onclick=()=>go(1);$('#back').onclick=()=>go(0);
+
+/* ===== API (Google Apps Script) + Mock ===== */
+async function api(action,payload){
+ if(CFG.USE_MOCK)return mock(action,payload);
+ if(!navigator.onLine)throw{code:'OFFLINE'};
+ const ac=new AbortController(),t=setTimeout(()=>ac.abort(),CFG.TIMEOUT_MS);
+ try{const r=await fetch(CFG.API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action,...payload}),signal:ac.signal});return await r.json()}
+ catch(e){throw{code:e.name==='AbortError'?'TIMEOUT':'NETWORK'}}finally{clearTimeout(t)}}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+async function mock(a,p){await wait(900);
+ if(a==='createOrder'){const id='DGT-'+Math.random().toString(36).slice(2,8).toUpperCase(),base=((CFG.SHIRT_PRICE+(p.embroidery?CFG.EMB_PRICE:0))*p.qty);
+  return{ok:true,orderId:id,amount:+(base+(1+Math.random()*98|0)/100).toFixed(2),qrPayload:id,receiver:'ชมรม DIGITECH (ตัวอย่าง)',expiresAt:Date.now()+CFG.QR_MINUTES*60000}}
+ if(a==='submitSlip'){const s=$('#mockRes').value;return{ok:true,status:s,message:''}}
+ return{ok:true,status:'PENDING'}}
+function apiErr(e){const m={OFFLINE:'ไม่มีอินเทอร์เน็ต กรุณาตรวจสอบการเชื่อมต่อแล้วลองใหม่',TIMEOUT:'ระบบตอบกลับช้า กรุณาลองใหม่อีกครั้ง',NETWORK:'เชื่อมต่อระบบไม่ได้ กรุณาลองใหม่'};toast(m[e.code]||'เกิดข้อผิดพลาด กรุณาลองใหม่',1)}
+
+/* ===== สร้างออเดอร์ ===== */
+$('#pay').onclick=async()=>{if(S.busy)return;if(isClosed()){toast('ปิดรับพรีออเดอร์แล้ว',1);return}S.busy=true;const b=$('#pay');b.disabled=true;b.innerHTML='<span class="spin"></span>กำลังสร้างออเดอร์';
+ try{const r=await api('createOrder',data());if(!r||!r.orderId){toast(r&&r.message||'สร้างออเดอร์ไม่สำเร็จ',1);return}S.order=r;showPay()}catch(e){apiErr(e)}finally{S.busy=false;b.disabled=false;b.textContent='ชำระเงิน'}};
+function drawQr(el,seed){const c=document.createElement('canvas');c.width=c.height=210;const x=c.getContext('2d'),n=25,s=210/n;let h=0;for(const ch of seed)h=(h*31+ch.charCodeAt(0))>>>0;x.fillStyle='#fff';x.fillRect(0,0,210,210);x.fillStyle='#000';
+ for(let i=0;i<n;i++)for(let j=0;j<n;j++){h=(h*1664525+1013904223)>>>0;const f=(i<7&&j<7)||(i<7&&j>17)||(i>17&&j<7);if(f){const a=i%18,b=j%18,e=Math.min(a,6-a,b,6-b);if(e<2||e===2&&0||(a>1&&a<5&&b>1&&b<5))x.fillRect(j*s,i*s,s,s)}else if(h>>>28<7)x.fillRect(j*s,i*s,s,s)}
+ el.innerHTML='';el.append(c);return c}
+function showPay(){const o=S.order;S.slip=null;resetSlip();$('#res').innerHTML='';$('#pAmt').textContent=baht(o.amount);$('#pName').textContent=o.receiver||'';$('#pId').textContent=o.orderId;
+ $('#mockBox').hidden=!CFG.USE_MOCK;
+ // เคลียร์พื้นที่ QR เดิม
+$('#qr').innerHTML = '';
+
+if (o.qrImageUrl) {
+  const i = new Image(); i.alt = 'QR PromptPay'; i.src = o.qrImageUrl;
+  $('#qr').append(i);
+} else {
+  // วาด PromptPay QR จาก Payload ที่ Backend ส่งมา
+  new QRCode($('#qr'), {
+    text: o.qrPayload,
+    width: 210,
+    height: 210,
+    correctLevel: QRCode.CorrectLevel.M
+  });
+}
+ go(3);clearInterval(S.timer);const tk=()=>{const l=o.expiresAt-Date.now();if(l<=0){clearInterval(S.timer);$('#pTimer').innerHTML='QR หมดอายุแล้ว';$('#verify').textContent='สร้างออเดอร์ใหม่';toast('QR หมดอายุ กรุณาสร้างออเดอร์ใหม่',1);return}$('#pTimer').textContent='หมดอายุใน '+String(l/60000|0).padStart(2,'0')+':'+String(l/1000%60|0).padStart(2,'0')};$('#verify').textContent='ยืนยันการชำระเงิน';tk();S.timer=setInterval(tk,1000)}
+$('#saveQr').onclick = () => {
+  const canvas = $('#qr canvas');
+  const img = $('#qr img');
+  let url = '';
+
+  if (canvas && canvas.width > 0) {
+    url = canvas.toDataURL('image/png');
+  } else if (img && img.src) {
+    url = img.src;
+  }
+
+  if (url) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'qr-' + (S.order ? S.order.orderId : 'promptpay') + '.png';
+    a.click();
+  } else if (S.order && S.order.qrImageUrl) {
+    window.open(S.order.qrImageUrl, '_blank', 'noopener');
+  } else {
+    toast('ไม่สามารถบันทึกรูป QR ได้', 1);
+  }
+};
+
+/* ===== สลิป ===== */
+const drop=$('#drop'),fi=$('#file');
+drop.onclick=()=>fi.click();drop.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fi.click()}};$('#chg').onclick=()=>fi.click();$('#del').onclick=resetSlip;
+['dragover','dragenter'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('dg')}));['dragleave','drop'].forEach(t=>drop.addEventListener(t,()=>drop.classList.remove('dg')));
+drop.addEventListener('drop',e=>{e.preventDefault();setSlip(e.dataTransfer.files[0])});fi.onchange=()=>setSlip(fi.files[0]);
+function resetSlip(){S.slip=null;fi.value='';$('#prev').hidden=true;$('#slipBtns').hidden=true;drop.hidden=false}
+async function setSlip(f){if(!f)return;const ok=/^image\/(jpeg|png|heic|heif)$/.test(f.type)||/\.heic$/i.test(f.name);if(!ok){toast('ไฟล์ไม่ถูกต้อง รับเฉพาะ JPG, PNG, HEIC',1);return}
+ if(f.size>CFG.SLIP_MAX_MB*1048576*4){toast(`ไฟล์ใหญ่เกิน ${CFG.SLIP_MAX_MB} MB`,1);return}
+ try{S.slip=await shrink(f)}catch(e){toast('อ่านไฟล์ไม่ได้ กรุณาเลือกรูปอื่น',1);return}
+ if(S.slip.length>CFG.SLIP_MAX_MB*1048576*1.37){S.slip=null;toast(`ไฟล์ใหญ่เกิน ${CFG.SLIP_MAX_MB} MB`,1);return}
+ $('#prev').src=S.slip;$('#prev').hidden=false;$('#slipBtns').hidden=false;drop.hidden=true}
+/* ย่อรูปก่อนส่ง (HEIC ที่เบราว์เซอร์ถอดรหัสไม่ได้ จะส่งไฟล์เดิม) */
+function shrink(f){return new Promise((res,rej)=>{const r=new FileReader();r.onerror=rej;r.onload=()=>{const im=new Image();im.onerror=()=>res(r.result);im.onload=()=>{const m=1280,k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.85))};im.src=r.result};r.readAsDataURL(f)})}
+
+/* ===== ยืนยันการชำระเงิน ===== */
+$('#verify').onclick=async()=>{
+  if(S.busy)return;
+  const o=S.order;
+  if(o.expiresAt<Date.now()){
+    go(2);
+    toast('QR หมดอายุ กดชำระเงินเพื่อสร้างออเดอร์ใหม่',1);
+    return;
+  }
+  if(!S.slip){
+    toast('กรุณาแนบสลิปก่อน',1);
+    return;
+  }
+  
+  S.busy=true;
+  const b=$('#verify');
+  b.disabled=true;
+  b.innerHTML='<span class="spin"></span>กำลังส่งข้อมูล...';
+  
+  try{
+    const r=await api('submitSlip',{orderId:o.orderId,slip:S.slip.split(',')[1]});
+    outcome(r.status,r.message);
+  }catch(e){
+    // แม้การเชื่อมต่อมีปัญหา ก็ให้ส่งผ่านไปหน้าขอบคุณ แล้วให้แอดมินเช็กหลังบ้าน
+    outcome('MANUAL_REVIEW');
+  }finally{
+    S.busy=false;
+    b.disabled=false;
+    b.textContent='ยืนยันการชำระเงิน';
+  }
+};
+
+// บังคับผ่านไปหน้าขอบคุณทันที ไม่แสดงเออเรอร์ใดๆ บนหน้าเว็บ
+function outcome(s,msg){
+  clearInterval(S.timer);
+  thanks(s);
+}
+
+/* ===== ขอบคุณ ===== */
+function thanks(s){
+  const d=data(), o=S.order;
+  $('#tId').textContent=o.orderId;
+  
+  // ลบการเขียนชื่อ/AKA ทับลงบนรูปเสื้อออก เพื่อให้โชร์รูปเสื้อปกติ
+  
+  $('#tSum').innerHTML=esc(d.nameEn)+' · '+esc(d.major)+'<br>'+d.qty+' ตัว · '+(d.embroidery?'ปักชื่อหลัง':'ไม่ปักชื่อ');
+  $('#tAmt').textContent=baht(o.amount);
+  $('#tDt').textContent=new Date().toLocaleString('th-TH');
+  go(4);
+  confetti();
+}
+
+/* ===== เอฟเฟกต์เฉลิมฉลอง (Confetti) ===== */
+function confetti(){
+  if(RM)return;
+  const c=$('#cf');
+  c.hidden=false;
+  c.width=innerWidth;
+  c.height=innerHeight;
+  const x=c.getContext('2d'),
+        p=Array.from({length:60},()=>({x:Math.random()*c.width,y:-20-Math.random()*200,v:2+Math.random()*3,s:3+Math.random()*4,t:Math.random()<.5?'0':'1'}));
+  let n=0;
+  (function f(){
+    x.clearRect(0,0,c.width,c.height);
+    x.fillStyle='#6ee7b7';
+    x.font='bold 14px Orbitron,monospace';
+    p.forEach(a=>{a.y+=a.v;x.fillText(a.t,a.x,a.y)});
+    if(++n<150)requestAnimationFrame(f);
+    else c.hidden=true;
+  })();
+}
+
+/* ===== ปุ่มกลับหน้าแรก ===== */
+$('#home').onclick=()=>{
+  $('#f').reset();               // ล้างข้อมูลในฟอร์มทั้งหมด
+  if(F.aka) F.aka.disabled = true; // ปิดช่องกรอก AKA
+  $('#akaOn').checked = false;    // ปลดเช็กกล่อง AKA
+  resetSlip();                   // ล้างรูปสลิปที่แนบไว้
+  S.order = null;                // ล้างข้อมูลออเดอร์เดิม
+  go(0);                         // พากลับไปหน้าแรก (Step 0) ทันที
+};
+</script>
+</body>
+</html>
