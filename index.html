@@ -191,6 +191,21 @@ canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:50;width:100%;heigh
   opacity: 0.6;
   letter-spacing: 0.08em;
 }
+
+/* ===== v2.0 ===== */
+:root{color-scheme:dark}
+.mock{width:min(100%,340px,46svh);height:auto;min-height:0;aspect-ratio:1;display:block;overflow:hidden;isolation:isolate;background:radial-gradient(circle at 50% 58%,rgba(52,211,153,.25),transparent 66%),rgba(2,20,16,.5);border:1px solid var(--line);box-shadow:0 0 30px rgba(52,211,153,.15) inset}
+.mk-in{position:absolute;inset:0;transition:transform .2s ease-out}
+.mk-in img{position:absolute;left:8%;top:8%;width:84%;height:84%;max-width:none;max-height:none;object-fit:contain;border-radius:0;opacity:0;transform:scale(.94);transition:opacity .35s,transform .35s;pointer-events:none;filter:drop-shadow(0 12px 24px rgba(0,0,0,.5))}
+.mk-in img.on{opacity:1;transform:none}
+#shirt{gap:18px}.seg{position:relative;z-index:2;width:min(100%,340px)}.seg button{flex:1;min-width:0}
+select option{background:#06231a;color:var(--ink)}
+input:focus,select:focus{outline:0;border-color:var(--g4);box-shadow:0 0 0 3px rgba(52,211,153,.22)}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--g3)}
+#ctaBtn:not(:disabled){animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 26px rgba(110,231,183,.65)}}
+.st{transition:transform .2s,box-shadow .2s}.st:hover{transform:translateY(-3px);box-shadow:0 0 32px rgba(52,211,153,.28)}
+#tId{cursor:pointer;text-decoration:underline dotted}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
@@ -207,15 +222,11 @@ canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:50;width:100%;heigh
 
  <section id="shirt" class="rv">
   <!-- วางรูป mockup ที่นี่: ขนาดแนะนำ 800x800px (PNG โปร่งใส) — ด้านหน้า = #mockFront, ด้านหลัง = #mockBack -->
-  <div class="mock" id="mock">
-  <div id="mockFront">
-    <img src="Front2.png" alt="เสื้อช็อปด้านหน้า" style="width:100%;height:100%;object-fit:contain;">
-  </div>
-  <div id="mockBack" hidden>
-    <img src="Back2.png" alt="เสื้อช็อปด้านหลัง" style="width:100%;height:100%;object-fit:contain;">
-  </div>
-</div>
-  <div class="seg" role="group" aria-label="สลับด้านเสื้อ"><button class="btn on" data-side="front">ด้านหน้า</button><button class="btn ghost" data-side="back">ด้านหลัง</button></div>
+  <div class="mock" id="mock"><div class="mk-in" id="mkIn">
+    <img id="mockFront" class="on" src="Front2.png" alt="เสื้อช็อปด้านหน้า" decoding="async">
+    <img id="mockBack" src="Back2.png" alt="เสื้อช็อปด้านหลัง" decoding="async">
+  </div></div>
+  <div class="seg" role="group" aria-label="สลับด้านเสื้อ"><button class="btn on" data-side="front" aria-pressed="true">ด้านหน้า</button><button class="btn ghost" data-side="back" aria-pressed="false">ด้านหลัง</button></div>
  </section>
 
  <section class="rv"><h2>กำหนดการ</h2>
@@ -271,7 +282,7 @@ canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:50;width:100%;heigh
  <p class="note" style="text-align:center">โปรดเข้าลองวัดไซซ์เสื้อด้วยตนเองที่หน้าร้าน เพื่อไซซ์ที่สวมใส่ได้อย่างสบายและพอดี</p><p class="note" style="text-align:center;margin-top:0">
   <a id="sheetLink" target="_blank" rel="noopener" style="color:var(--g4);text-decoration:underline;font-weight:500;font-size:0.95rem;display:inline-flex;align-items:center;gap:4px">ตรวจสอบรายการออเดอร์ทั้งหมด</a>
 </p><div class="row2"><button class="btn" id="home">กลับหน้าแรก</button></div></div>
- <div class="app-ver mono">© 2026 DGT Working Committee. All rights reserved. v1.0.7</div>
+ <div class="app-ver mono">© 2026 DGT Working Committee. All rights reserved. v2.0.0</div>
 </main>
 <div id="cta" class="h"><button class="btn" id="ctaBtn" data-go>สั่งจองเลย</button></div>
 <canvas id="cf" hidden></canvas>
@@ -328,12 +339,12 @@ if($('#sheetLink')) $('#sheetLink').href = CFG.SHEET_URL || '#';
 $('#priceTxt').textContent=CFG.SHIRT_PRICE?CFG.SHIRT_PRICE+' บาท':'ราคาจะประกาศเร็ว ๆ นี้';
 const endMs=CFG.PREORDER_END_ISO?Date.parse(CFG.PREORDER_END_ISO):NaN;
 const isClosed=()=>!isNaN(endMs)&&Date.now()>endMs;
-function tickCd(){if(isNaN(endMs)){$('#cd').textContent='';return}const l=endMs-Date.now(),b=$('#badge');if(l<=0){b.textContent='ปิดรับแล้ว';b.classList.add('cl');$('#cd').textContent='';return}const s=l/1000|0;$('#cd').textContent=`ปิดรับใน ${s/86400|0} วัน ${String(s%86400/3600|0).padStart(2,'0')}:${String(s%3600/60|0).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
+function tickCd(){if(isNaN(endMs)){$('#cd').textContent='';return}const l=endMs-Date.now(),b=$('#badge');if(l<=0){b.textContent='ปิดรับแล้ว';b.classList.add('cl');$('#ctaBtn').disabled=true;$('#ctaBtn').textContent='ปิดรับพรีออเดอร์แล้ว';$('#cd').textContent='';return}const s=l/1000|0;$('#cd').textContent=`ปิดรับใน ${s/86400|0} วัน ${String(s%86400/3600|0).padStart(2,'0')}:${String(s%3600/60|0).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
 tickCd();setInterval(tickCd,1000);
 /* สลับด้านเสื้อ */
-$$('[data-side]').forEach(b=>b.onclick=()=>{$$('[data-side]').forEach(x=>{x.classList.toggle('on',x===b);x.classList.toggle('ghost',x!==b)});const f=b.dataset.side==='front';$('#mockFront').hidden=!f;$('#mockBack').hidden=f;$('#mock').classList.remove('sw');void $('#mock').offsetWidth;$('#mock').classList.add('sw')});
+$$('[data-side]').forEach(b=>b.onclick=()=>{$$('[data-side]').forEach(x=>{x.classList.toggle('on',x===b);x.classList.toggle('ghost',x!==b)});const f=b.dataset.side==='front';$('#mockFront').classList.toggle('on',f);$('#mockBack').classList.toggle('on',!f);$$('[data-side]').forEach(x=>x.setAttribute('aria-pressed',x===b))});
 /* tilt เบา ๆ บนเดสก์ท็อป */
-if(!RM&&matchMedia('(hover:hover)').matches){const m=$('#mock');m.onmousemove=e=>{const r=m.getBoundingClientRect();m.style.transform=`perspective(600px) rotateY(${((e.clientX-r.left)/r.width-.5)*10}deg) rotateX(${-((e.clientY-r.top)/r.height-.5)*10}deg)`};m.onmouseleave=()=>m.style.transform=''}
+if(!RM&&matchMedia('(hover:hover)').matches){const m=$('#mock'),k=$('#mkIn');m.onmousemove=e=>{const r=m.getBoundingClientRect();k.style.transform=`perspective(600px) rotateY(${((e.clientX-r.left)/r.width-.5)*10}deg) rotateX(${-((e.clientY-r.top)/r.height-.5)*10}deg)`};m.onmouseleave=()=>k.style.transform=''}
 /* fade-up เริ่มก่อนเข้าจอ */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('.d').forEach(d=>d.classList.add('glow'));io.unobserve(e.target)}}),{rootMargin:'0px 0px 160px 0px'});
 $$('.rv').forEach(e=>io.observe(e));
@@ -370,7 +381,7 @@ $('#akaOn').onchange=e=>{F.aka.disabled=!e.target.checked;if(!e.target.checked){
 const setQ=n=>{F.qty.value=Math.min(CFG.MAX_QTY,Math.max(1,n));touched.qty=true;chk('qty');calc()};
 $('#qm').onclick=()=>setQ((+F.qty.value||1)-1);$('#qp').onclick=()=>setQ((+F.qty.value||0)+1);
 /* ส่วนสรุปราคา (ประมาณการเท่านั้น Backend เป็นผู้ยืนยันยอดจริง) */
-const cu=new WeakMap();function count(el,to,fmt){const from=cu.get(el)||0;cu.set(el,to);if(RM){el.textContent=fmt(to);return}const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/400);el.textContent=fmt(from+(to-from)*p);if(p<1)requestAnimationFrame(f)})(t0)}
+const cu=new WeakMap();function count(el,to,fmt){const from=cu.get(el)||0,id=(el._c=(el._c||0)+1);cu.set(el,to);if(RM){el.textContent=fmt(to);return}const t0=performance.now();(function f(t){if(el._c!==id)return;const p=Math.min(1,(t-t0)/400);el.textContent=fmt(from+(to-from)*p);if(p<1)requestAnimationFrame(f)})(t0)}
 function calc(){const q=Math.max(0,Math.min(CFG.MAX_QTY,+F.qty.value||0)),e=F.emb.value==='1'?CFG.EMB_PRICE:0;
  $('#s1').textContent=CFG.SHIRT_PRICE?CFG.SHIRT_PRICE+' บาท':'รอประกาศ';$('#s2').textContent=e+' บาท';$('#s3').textContent=q+' ตัว';
  const tot=(CFG.SHIRT_PRICE+e)*q;count($('#s4'),tot,v=>Math.round(v).toLocaleString('th-TH')+' บาท');return{q,e,tot}}
@@ -383,7 +394,7 @@ $('#f').onsubmit=e=>{e.preventDefault();if(isClosed()){toast('ปิดรับ
  const bad=Object.keys(F).filter(k=>!chk(k,true));if(bad.length){F[bad[0]].scrollIntoView({block:'center',behavior:RM?'auto':'smooth'});F[bad[0]].focus({preventScroll:true});toast('กรุณากรอกข้อมูลให้ถูกต้องครบถ้วน',1);return}
  renderReview();go(2)};
 function renderReview(){const d=data(),c=calc(),r=(a,b)=>`<div><span>${a}</span><span>${b}</span></div>`;
- $('#rv').innerHTML=r('ชื่อ-นามสกุล (อังกฤษ)',esc(d.nameEn))+r('สาขาวิชา',esc(d.major))+r('AKA',d.aka?esc(d.aka):'<span style="color:#587a6b">—</span>')+r('ปักชื่อ DIGITECH ด้านหลัง',d.embroidery?'ปัก':'ไม่ปัก')+r('จำนวน',d.qty+' ตัว');
+ $('#rv').innerHTML=r('ชื่อ-นามสกุล (ไทย)',esc(d.prefix+' '+d.nameTh))+r('ชื่อ-นามสกุล (อังกฤษ)',esc(d.nameEn))+r('รหัสนักศึกษา',esc(d.studentId))+r('สาขาวิชา',esc(d.major))+r('AKA',d.aka?esc(d.aka):'<span style="color:#587a6b">—</span>')+r('ปักชื่อ DIGITECH ด้านหลัง',d.embroidery?'ปัก':'ไม่ปัก')+r('จำนวน',d.qty+' ตัว')+r('Instagram',esc(d.instagram))+r('เบอร์โทร',esc(d.phone));
  $('#rc').innerHTML=r('ค่าเสื้อ × '+d.qty,CFG.SHIRT_PRICE?CFG.SHIRT_PRICE*d.qty+' บาท':'รอประกาศ')+r('ค่าปักหลัง × '+(d.embroidery?d.qty:0),(c.e*d.qty)+' บาท')+`<div class="tot"><span>ยอดรวมทั้งหมด</span><span>${c.tot.toLocaleString('th-TH')} บาท</span></div>`}
 $('#edit').onclick=()=>go(1);$('#back').onclick=()=>go(0);
 
@@ -408,7 +419,7 @@ $('#pay').onclick=async()=>{if(S.busy)return;if(isClosed()){toast('ปิดร�
 function drawQr(el,seed){const c=document.createElement('canvas');c.width=c.height=210;const x=c.getContext('2d'),n=25,s=210/n;let h=0;for(const ch of seed)h=(h*31+ch.charCodeAt(0))>>>0;x.fillStyle='#fff';x.fillRect(0,0,210,210);x.fillStyle='#000';
  for(let i=0;i<n;i++)for(let j=0;j<n;j++){h=(h*1664525+1013904223)>>>0;const f=(i<7&&j<7)||(i<7&&j>17)||(i>17&&j<7);if(f){const a=i%18,b=j%18,e=Math.min(a,6-a,b,6-b);if(e<2||e===2&&0||(a>1&&a<5&&b>1&&b<5))x.fillRect(j*s,i*s,s,s)}else if(h>>>28<7)x.fillRect(j*s,i*s,s,s)}
  el.innerHTML='';el.append(c);return c}
-function showPay(){const o=S.order;S.slip=null;resetSlip();$('#res').innerHTML='';$('#pAmt').textContent=baht(o.amount);$('#pName').textContent=o.receiver||'';$('#pId').textContent=o.orderId;
+function showPay(){const o=S.order;o.expiresAt=+o.expiresAt||Date.parse(o.expiresAt)||Date.now()+CFG.QR_MINUTES*60000;S.slip=null;resetSlip();$('#res').innerHTML='';$('#pAmt').textContent=baht(o.amount);$('#pName').textContent=o.receiver||'';$('#pId').textContent=o.orderId;
  $('#mockBox').hidden=!CFG.USE_MOCK;
  // เคลียร์พื้นที่ QR เดิม
 $('#qr').innerHTML = '';
@@ -418,7 +429,7 @@ if (o.qrImageUrl) {
   $('#qr').append(i);
 } else {
   // วาด PromptPay QR จาก Payload ที่ Backend ส่งมา
-  new QRCode($('#qr'), {
+  if(typeof QRCode==='undefined'){if(CFG.USE_MOCK)drawQr($('#qr'),o.qrPayload||o.orderId);else $('#qr').innerHTML='<p style="color:#032016;font-size:.9rem">โหลด QR ไม่สำเร็จ กรุณารีเฟรชหน้าแล้วลองใหม่</p>'}else new QRCode($('#qr'), {
     text: o.qrPayload,
     width: 210,
     height: 210,
@@ -510,7 +521,7 @@ function thanks(s){
   
   $('#tSum').innerHTML=esc(d.nameEn)+' · '+esc(d.major)+'<br>'+d.qty+' ตัว · '+(d.embroidery?'ปักชื่อหลัง':'ไม่ปักชื่อ');
   $('#tAmt').textContent=baht(o.amount);
-  $('#tDt').textContent=new Date().toLocaleString('th-TH');
+  $('#tDt').textContent=new Date().toLocaleString('th-TH')+(s==='PAID'?' · ชำระเงินแล้ว':' · รอแอดมินตรวจสอบสลิป');
   go(4);
   confetti();
 }
@@ -544,6 +555,9 @@ $('#home').onclick=()=>{
   S.order = null;                // ล้างข้อมูลออเดอร์เดิม
   go(0);                         // พากลับไปหน้าแรก (Step 0) ทันที
 };
+/* v2.0: กันลากไฟล์ทิ้งนอกกล่องแล้วหน้าเว็บเปลี่ยนไปเปิดรูป + คัดลอกรหัสออเดอร์ */
+['dragover','drop'].forEach(t=>addEventListener(t,e=>e.preventDefault()));
+$('#tId').title='แตะเพื่อคัดลอก';$('#tId').onclick=()=>{const t=$('#tId').textContent;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('คัดลอกรหัสออเดอร์แล้ว: '+t),()=>toast('คัดลอกไม่สำเร็จ',1))};
 </script>
 </body>
 </html>
